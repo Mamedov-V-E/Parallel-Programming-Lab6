@@ -4,6 +4,7 @@ import akka.http.javadsl.server.Route;
 public class ConfigurationStorageActor extends AbstractActor {
 
     public Receive createReceive() {
-        return createReceive().
+        return receiveBuilder()
+                .match()
     }
 }
