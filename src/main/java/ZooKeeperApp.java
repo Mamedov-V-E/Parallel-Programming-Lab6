@@ -1,8 +1,13 @@
+import akka.NotUsed;
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.actor.Props;
 import akka.http.javadsl.Http;
 import akka.stream.ActorMaterializer;
+import akka.stream.javadsl.Flow;
+
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 
 public class ZooKeeperApp {
     public static final String ACTOR_SYSTEM_NAME = "zooKeeperSystem";
@@ -21,6 +26,7 @@ public class ZooKeeperApp {
 
         final Http http = Http.get(system);
         final ActorMaterializer materializer = ActorMaterializer.create(system);
-        final Flow<>
+        final Flow<HttpRequest, HttpResponse, NotUsed> routeFlow =
+                FlowFa
     }
 }
