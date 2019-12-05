@@ -1,6 +1,8 @@
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.actor.Props;
+import akka.http.javadsl.Http;
+import akka.stream.ActorMaterializer;
 
 public class ZooKeeperApp {
     public static final String ACTOR_SYSTEM_NAME = "zooKeeperSystem";
@@ -17,6 +19,8 @@ public class ZooKeeperApp {
                 ConfigurationStorageActor.class,
                 CONFIG_ACTOR_NAME));
 
-        final
+        final Http http = Http.get(system);
+        final ActorMaterializer materializer = ActorMaterializer.create(system);
+
     }
 }
