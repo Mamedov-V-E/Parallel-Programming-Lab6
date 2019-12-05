@@ -8,7 +8,7 @@ import java.net.http.HttpResponse;
 
 public class FlowFactory {
 
-    public Flow<HttpRequest, HttpResponse, NotUsed> createFlow(ActorSystem system, ActorMaterializer materializer) {
+    public static Flow<HttpRequest, HttpResponse, NotUsed> createFlow(ActorSystem system, ActorMaterializer materializer) {
 
     }
 }
