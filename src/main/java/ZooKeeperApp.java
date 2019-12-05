@@ -47,5 +47,7 @@ public class ZooKeeperApp {
 
         System.out.println("Server online at http://" + HOST_NAME + ":" + port + "\nPress RETURN to stop...");
         System.in.read();
+        binding
+                .
     }
 }
