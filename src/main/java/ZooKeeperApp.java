@@ -4,6 +4,7 @@ import akka.actor.Props;
 
 public class ZooKeeperApp {
     public static final String ACTOR_SYSTEM_NAME = "zooKeeperSystem";
+    public static final String CONFIG_ACTOR_NAME = "configActor";
 
     public static void main (String[] args) {
         if (args.length < 1) {
@@ -12,8 +13,10 @@ public class ZooKeeperApp {
         }
 
         ActorSystem system = ActorSystem.create(ACTOR_SYSTEM_NAME);
-        ActorRef configActor = system.actorOf(Props.create(ConfigurationStorageActor.class));
+        ActorRef configActor = system.actorOf(Props.create(
+                ConfigurationStorageActor.class,
+                CONFIG_ACTOR_NAME));
 
-        
+                
     }
 }
