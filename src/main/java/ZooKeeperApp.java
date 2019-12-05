@@ -17,6 +17,6 @@ public class ZooKeeperApp {
                 ConfigurationStorageActor.class,
                 CONFIG_ACTOR_NAME));
 
-        final         
+        final
     }
 }
