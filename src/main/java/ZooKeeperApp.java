@@ -27,6 +27,7 @@ public class ZooKeeperApp {
         final Http http = Http.get(system);
         final ActorMaterializer materializer = ActorMaterializer.create(system);
         final Flow<HttpRequest, HttpResponse, NotUsed> routeFlow =
-                FlowFactory.
+                FlowFactory.createFlow(system, materializer);
+        final
     }
 }
