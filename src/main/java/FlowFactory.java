@@ -16,7 +16,9 @@ public class FlowFactory {
             Query q = r.getUri().query();
             String site = q.get(SITE_PARAMETER_NAME).get();
             Integer count = Integer.parseInt(q.get(COUNT_PARAMETER_NAME).get());
-            
+
+            return (count > 0) ?
+                    
         })
     }
 }
