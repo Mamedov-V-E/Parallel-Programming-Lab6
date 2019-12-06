@@ -17,8 +17,8 @@ public class ZooKeeperApp {
     public static final String ACTOR_SYSTEM_NAME = "zooKeeperSystem";
     public static final String CONFIG_ACTOR_NAME = "configActor";
     public static final String HOST_NAME = "localhost";
-    public static final String ZOOKEEPER_ID = "127.0.0.1";
-    public static final int ZOOKEEPER_PORT = 2181
+    public static final String ZOOKEEPER_ID = "localhost";
+    public static final int ZOOKEEPER_PORT = 2181;
 
     public static void main (String[] args) throws Exception {
         if (args.length < 1) {
