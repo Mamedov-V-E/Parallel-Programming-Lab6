@@ -19,7 +19,7 @@ public class AnonymityZooKeeper implements Watcher {
         if (event.getType() == Watcher.Event.EventType.NodeCreated) {
             try {
                 List<String> servers = zkClient.getChildren("/servers", this);
-            } catch ()
+            } catch (Exception e)
         }
     }
 }
