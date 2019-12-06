@@ -9,6 +9,8 @@ import akka.http.javadsl.model.HttpRequest;
 import akka.http.javadsl.model.HttpResponse;
 import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
+import org.apache.zookeeper.CreateMode;
+import org.apache.zookeeper.ZooDefs;
 import org.apache.zookeeper.ZooKeeper;
 
 import java.util.concurrent.CompletionStage;
@@ -25,7 +27,7 @@ public class ZooKeeperApp {
             System.out.println("Server port is not specified");
             System.exit(-1);
         }
-        int port = 0;
+        Integer port = 0;
         try {
             port = Integer.parseInt(args[0]);
         } catch (NumberFormatException e) {
@@ -40,9 +42,14 @@ public class ZooKeeperApp {
 
         ZooKeeper zoo = new ZooKeeper(
                 ZOOKEEPER_ID + ':' + ZOOKEEPER_PORT,
-
-                )
-
+                3000,
+                this
+                );
+        zoo.create("/servers/" + port,
+                port.toString().getBytes(),
+                ZooDefs.Ids.OPEN_ACL_UNSAFE,
+                CreateMode.EPHEMERAL_SEQUENTIAL
+        );
         final Http http = Http.get(system);
         final ActorMaterializer materializer = ActorMaterializer.create(system);
         final Flow<HttpRequest, HttpResponse, NotUsed> routeFlow =
