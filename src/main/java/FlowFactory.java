@@ -1,4 +1,5 @@
 import akka.NotUsed;
+import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.http.javadsl.model.HttpRequest;
 import akka.http.javadsl.model.HttpResponse;
@@ -11,14 +12,15 @@ public class FlowFactory {
     private static final String SITE_PARAMETER_NAME = "url";
     private static final String COUNT_PARAMETER_NAME = "count";
 
-    public static Flow<HttpRequest, HttpResponse, NotUsed> createFlow(ActorSystem system, ActorMaterializer materializer) {
+    public static Flow<HttpRequest, HttpResponse, NotUsed> createFlow(ActorRef storeActor, ActorMaterializer materializer) {
         return Flow.of(HttpRequest.class).map(r -> {
             Query q = r.getUri().query();
             String site = q.get(SITE_PARAMETER_NAME).get();
             Integer count = Integer.parseInt(q.get(COUNT_PARAMETER_NAME).get());
 
-            return (count > 0) ?
-
+            if (count > 0) {
+                FString randomServer =
+            }
         })
     }
 }
