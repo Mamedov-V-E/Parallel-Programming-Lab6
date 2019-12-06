@@ -38,7 +38,10 @@ public class ZooKeeperApp {
                 ConfigurationStorageActor.class,
                 CONFIG_ACTOR_NAME));
 
-        ZooKeeper zoo = new ZooKeeper()
+        ZooKeeper zoo = new ZooKeeper(
+                ZOOKEEPER_ID + ':' + ZOOKEEPER_PORT,
+                
+                )
 
         final Http http = Http.get(system);
         final ActorMaterializer materializer = ActorMaterializer.create(system);
