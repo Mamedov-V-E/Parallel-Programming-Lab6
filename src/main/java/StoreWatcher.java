@@ -3,7 +3,7 @@ import org.apache.zookeeper.Watcher;
 import org.apache.zookeeper.ZooKeeper;
 
 public class StoreWatcher implements Watcher {
-    public synchronized void processWathcEvent(ZooKeeper zk, ) {
+    public synchronized void processWathcEvent(ZooKeeper zk, WatchedEvent event) {
 
     }
 
