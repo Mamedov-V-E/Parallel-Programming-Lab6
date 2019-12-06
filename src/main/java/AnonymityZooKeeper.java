@@ -2,6 +2,8 @@ import org.apache.zookeeper.WatchedEvent;
 import org.apache.zookeeper.Watcher;
 import org.apache.zookeeper.ZooKeeper;
 
+import java.util.List;
+
 public class AnonymityZooKeeper implements Watcher {
     private final ZooKeeper zkClient;
 
@@ -15,7 +17,7 @@ public class AnonymityZooKeeper implements Watcher {
 
     public void process(WatchedEvent event) {
         if (event.getType() == Watcher.Event.EventType.NodeCreated) {
-            zkClient.getChildren("/servers", this);
+            List<String> servers = zkClient.getChildren("/servers", this);
         }
     }
 }
