@@ -14,7 +14,7 @@ public class ConfigurationStorageActor extends AbstractActor {
                     store = Arrays.asList(m.getServers());
                 })
                 .match(GetMessage.class, m -> {
-
+                    
                 })
                 .build();
     }
