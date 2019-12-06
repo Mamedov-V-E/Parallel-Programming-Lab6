@@ -45,7 +45,7 @@ public class ZooKeeperApp {
                 ZOOKEEPER_ID + ':' + ZOOKEEPER_PORT,
                 3000,
                 event -> {
-                    
+                    if (event.getState() == )
                 }
                 );
         zoo.create("/servers/" + port,
