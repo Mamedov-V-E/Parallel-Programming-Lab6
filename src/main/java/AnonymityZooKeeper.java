@@ -2,10 +2,10 @@ import org.apache.zookeeper.WatchedEvent;
 import org.apache.zookeeper.Watcher;
 import org.apache.zookeeper.ZooKeeper;
 
-public class StoreWatcher implements Watcher {
+public class AnonymityZooKeeper implements Watcher {
     private final ZooKeeper zkClient;
 
-    public StoreWatcher () throws  Exception{
+    public AnonymityZooKeeper() throws  Exception{
         zkClient = new ZooKeeper(
                 "sa" + ':' + 1233,
                 3000,
@@ -15,7 +15,7 @@ public class StoreWatcher implements Watcher {
 
     public void process(WatchedEvent event) {
         if (event.getType() == Watcher.Event.EventType.NodeCreated) {
-            .getChildren("/servers", this)
+            zkClient.getChildren("/servers", this)
         }
     }
 }
