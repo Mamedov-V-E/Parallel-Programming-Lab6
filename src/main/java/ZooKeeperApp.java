@@ -46,7 +46,7 @@ public class ZooKeeperApp {
                 3000,
                 event -> {
                     if (event.getType() == Watcher.Event.EventType.NodeCreated) {
-                            
+                        zoo.getChildren()
                     }
                 }
                 );
