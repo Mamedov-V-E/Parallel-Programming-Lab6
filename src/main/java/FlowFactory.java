@@ -4,8 +4,10 @@ import akka.actor.ActorSystem;
 import akka.http.javadsl.model.HttpRequest;
 import akka.http.javadsl.model.HttpResponse;
 import akka.http.javadsl.model.Query;
+import akka.pattern.Patterns;
 import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
+import scala.concurrent.Future;
 
 
 public class FlowFactory {
@@ -19,7 +21,8 @@ public class FlowFactory {
             Integer count = Integer.parseInt(q.get(COUNT_PARAMETER_NAME).get());
 
             if (count > 0) {
-                FString randomServer =
+                Future<Object> result = Patterns.ask(storeActor, new GetMessage(), 10000);
+                result.onComplete();
             }
         })
     }
