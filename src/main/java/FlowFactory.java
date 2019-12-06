@@ -18,7 +18,7 @@ public class FlowFactory {
             Integer count = Integer.parseInt(q.get(COUNT_PARAMETER_NAME).get());
 
             return (count > 0) ?
-                    
+
         })
     }
 }
