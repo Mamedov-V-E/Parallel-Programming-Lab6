@@ -40,7 +40,7 @@ public class ZooKeeperApp {
 
         ZooKeeper zoo = new ZooKeeper(
                 ZOOKEEPER_ID + ':' + ZOOKEEPER_PORT,
-                
+
                 )
 
         final Http http = Http.get(system);
