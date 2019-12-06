@@ -4,9 +4,7 @@ import org.apache.zookeeper.ZooKeeper;
 
 public class StoreWatcher implements Watcher {
     private final ZooKeeper zkClient;
-//    public synchronized void processWathcEvent(ZooKeeper zk, WatchedEvent event) {
-//
-//    }
+
     public StoreWatcher () throws  Exception{
         zkClient = new ZooKeeper(
                 "sa" + ':' + 1233,
