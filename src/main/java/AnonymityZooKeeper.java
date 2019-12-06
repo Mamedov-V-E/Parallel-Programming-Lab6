@@ -1,7 +1,9 @@
-import org.apache.zookeeper.WatchedEvent;
-import org.apache.zookeeper.Watcher;
-import org.apache.zookeeper.ZooKeeper;
+import akka.actor.ActorRef;
+import akka.actor.ActorSystem;
+import org.apache.zookeeper.*;
+import scala.Int;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AnonymityZooKeeper implements Watcher {
@@ -9,24 +11,32 @@ public class AnonymityZooKeeper implements Watcher {
     public static final int ZOOKEEPER_PORT = 2181;
 
     private final ZooKeeper zkClient;
+    private final ActorRef storeActor;
 
-    public AnonymityZooKeeper() throws  Exception{
-        zkClient = new ZooKeeper(
+    public AnonymityZooKeeper(ActorRef storeActor) throws  Exception{
+        this.zkClient = new ZooKeeper(
                 ZOOKEEPER_ID + ':' + ZOOKEEPER_PORT,
                 3000,
                 this
         );
+        zoo.create("/servers/" + port,
+                port.toString().getBytes(),
+                ZooDefs.Ids.OPEN_ACL_UNSAFE,
+                CreateMode.EPHEMERAL_SEQUENTIAL
+        );
+        this.storeActor = storeActor;
     }
 
     public void process(WatchedEvent event) {
         if (event.getType() == Watcher.Event.EventType.NodeCreated) {
             try {
                 List<String> zkServers = zkClient.getChildren("/servers", this);
-                List<String> serversIdPort;
+                List<String> serversIdPort = new ArrayList<>();
                 for (String s : zkServers) {
                     byte[] port = zkClient.getData("/servers/" + s, false, null);
-                    serversIdPort.add(ZOOKEEPER_ID + ':')
+                    serversIdPort.add(ZOOKEEPER_ID + ':' + Integer.parseInt(port.toString()));
                 }
+                storeActor.tell(new StoreMessage(serversIdPort.toArray(new String[0])), ActorRef.noSender());
             } catch (Exception e) {
                 System.out.println(e.getMessage());
                 System.exit(-1);

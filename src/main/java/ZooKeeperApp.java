@@ -40,20 +40,8 @@ public class ZooKeeperApp {
                 ConfigurationStorageActor.class,
                 CONFIG_ACTOR_NAME));
 
-        ZooKeeper zoo = new ZooKeeper(
-                ZOOKEEPER_ID + ':' + ZOOKEEPER_PORT,
-                3000,
-                event -> {
-                    if (event.getType() == Watcher.Event.EventType.NodeCreated) {
-                        .getChildren("/servers", this)
-                    }
-                }
-                );
-        zoo.create("/servers/" + port,
-                port.toString().getBytes(),
-                ZooDefs.Ids.OPEN_ACL_UNSAFE,
-                CreateMode.EPHEMERAL_SEQUENTIAL
-        );
+
+
         final Http http = Http.get(system);
         final ActorMaterializer materializer = ActorMaterializer.create(system);
         final Flow<HttpRequest, HttpResponse, NotUsed> routeFlow =
