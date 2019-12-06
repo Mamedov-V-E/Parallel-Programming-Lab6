@@ -44,7 +44,7 @@ public class ZooKeeperApp {
         ZooKeeper zoo = new ZooKeeper(
                 ZOOKEEPER_ID + ':' + ZOOKEEPER_PORT,
                 3000,
-                Watcher.Event
+                this
                 );
         zoo.create("/servers/" + port,
                 port.toString().getBytes(),
