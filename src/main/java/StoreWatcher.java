@@ -6,7 +6,7 @@ public class StoreWatcher implements Watcher {
 
     public void process(WatchedEvent event) {
         if (event.getType() == Watcher.Event.EventType.NodeCreated) {
-            zk.getChildren("/servers", this)
+            .getChildren("/servers", this)
         }
     }
 }
