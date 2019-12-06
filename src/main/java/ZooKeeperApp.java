@@ -9,6 +9,7 @@ import akka.http.javadsl.model.HttpRequest;
 import akka.http.javadsl.model.HttpResponse;
 import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
+import org.apache.zookeeper.ZooKeeper;
 
 import java.util.concurrent.CompletionStage;
 
@@ -35,7 +36,7 @@ public class ZooKeeperApp {
                 ConfigurationStorageActor.class,
                 CONFIG_ACTOR_NAME));
 
-        
+        ZooKeeper zoo = new ZooKeeper()
 
         final Http http = Http.get(system);
         final ActorMaterializer materializer = ActorMaterializer.create(system);
