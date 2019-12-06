@@ -10,6 +10,7 @@ import akka.http.javadsl.model.HttpResponse;
 import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
 import org.apache.zookeeper.CreateMode;
+import org.apache.zookeeper.Watcher;
 import org.apache.zookeeper.ZooDefs;
 import org.apache.zookeeper.ZooKeeper;
 
@@ -43,7 +44,7 @@ public class ZooKeeperApp {
         ZooKeeper zoo = new ZooKeeper(
                 ZOOKEEPER_ID + ':' + ZOOKEEPER_PORT,
                 3000,
-                this
+                Watcher.Event
                 );
         zoo.create("/servers/" + port,
                 port.toString().getBytes(),
