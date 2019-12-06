@@ -9,6 +9,8 @@ import akka.stream.javadsl.Flow;
 public class FlowFactory {
 
     public static Flow<HttpRequest, HttpResponse, NotUsed> createFlow(ActorSystem system, ActorMaterializer materializer) {
-        return Flow.of(HttpRequest.class)
+        return Flow.of(HttpRequest.class).map(r -> {
+            
+        })
     }
 }
