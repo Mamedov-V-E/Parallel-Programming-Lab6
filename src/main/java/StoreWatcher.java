@@ -3,7 +3,7 @@ import org.apache.zookeeper.Watcher;
 import org.apache.zookeeper.ZooKeeper;
 
 public class StoreWatcher implements Watcher {
-    public synchronized 
+    public synchronized void 
 
 //    public void process(WatchedEvent event) {
 //        if (event.getType() == Watcher.Event.EventType.NodeCreated) {
