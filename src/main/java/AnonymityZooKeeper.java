@@ -13,13 +13,13 @@ public class AnonymityZooKeeper implements Watcher {
     private final ZooKeeper zkClient;
     private final ActorRef storeActor;
 
-    public AnonymityZooKeeper(ActorRef storeActor) throws  Exception{
+    public AnonymityZooKeeper(Integer port, ActorRef storeActor) throws  Exception{
         this.zkClient = new ZooKeeper(
                 ZOOKEEPER_ID + ':' + ZOOKEEPER_PORT,
                 3000,
                 this
         );
-        zoo.create("/servers/" + port,
+        zkClient.create("/servers/" + port,
                 port.toString().getBytes(),
                 ZooDefs.Ids.OPEN_ACL_UNSAFE,
                 CreateMode.EPHEMERAL_SEQUENTIAL

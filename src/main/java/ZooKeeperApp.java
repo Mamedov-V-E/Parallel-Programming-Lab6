@@ -39,8 +39,7 @@ public class ZooKeeperApp {
         ActorRef configActor = system.actorOf(Props.create(
                 ConfigurationStorageActor.class,
                 CONFIG_ACTOR_NAME));
-
-
+        AnonymityZooKeeper zoo = new AnonymityZooKeeper(port, configActor);
 
         final Http http = Http.get(system);
         final ActorMaterializer materializer = ActorMaterializer.create(system);
