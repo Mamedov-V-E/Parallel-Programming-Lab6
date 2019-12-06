@@ -2,6 +2,7 @@ import akka.actor.AbstractActor;
 import akka.http.javadsl.server.Route;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ConfigurationStorageActor extends AbstractActor {
@@ -10,9 +11,11 @@ public class ConfigurationStorageActor extends AbstractActor {
     public Receive createReceive() {
         return receiveBuilder()
                 .match(StoreMessage.class, m -> {
-                    store = new ArrayList<>().
+                    store = Arrays.asList(m.getServers());
                 })
+                .match(GetMessage.class, m -> {
 
+                })
                 .build();
     }
 }
