@@ -15,7 +15,7 @@ public class AnonymityZooKeeper implements Watcher {
 
     public void process(WatchedEvent event) {
         if (event.getType() == Watcher.Event.EventType.NodeCreated) {
-            zkClient.getChildren("/servers", this)
+            zkClient.getChildren("/servers", this);
         }
     }
 }
