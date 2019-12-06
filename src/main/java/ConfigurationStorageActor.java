@@ -14,7 +14,8 @@ public class ConfigurationStorageActor extends AbstractActor {
                     store = Arrays.asList(m.getServers());
                 })
                 .match(GetMessage.class, m -> {
-                    
+                    String randomServer = store.get((int)(Math.random() * store.size()));
+                    sender().tell(randomServer, self());
                 })
                 .build();
     }
