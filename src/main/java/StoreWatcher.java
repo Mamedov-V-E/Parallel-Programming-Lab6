@@ -1,6 +1,9 @@
+import org.apache.zookeeper.WatchedEvent;
 import org.apache.zookeeper.Watcher;
 
 public class StoreWatcher extends Watcher {
-    @Override
-    public void process()
+
+    public void process(WatchedEvent e) {
+        
+    }
 }
