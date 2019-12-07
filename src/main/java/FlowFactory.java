@@ -16,11 +16,12 @@ import java.util.concurrent.CompletionStage;
 public class FlowFactory {
     private static final String SITE_PARAMETER_NAME = "url";
     private static final String COUNT_PARAMETER_NAME = "count";
+    private static final int MAX_SIMULTANEOUS_REQUESTS = 10;
 
     public static Flow<HttpRequest, HttpResponse, NotUsed> createFlow(ActorSystem system,
                                                                       ActorRef storeActor,
                                                                       ActorMaterializer materializer) {
-        return Flow.of(HttpRequest.class).mapAsync(10, r -> {
+        return Flow.of(HttpRequest.class).mapAsync(MAX_SIMULTANEOUS_REQUESTS, r -> {
             Query q = r.getUri().query();
             String site = q.get(SITE_PARAMETER_NAME).get();
             Integer count = Integer.parseInt(q.get(COUNT_PARAMETER_NAME).get());
@@ -37,9 +38,5 @@ public class FlowFactory {
                 return http.singleRequest(HttpRequest.create(site));
             }
         });
-    }
-
-    public CompletionStage<HttpResponse> fetch(String url) {
-        return http.singleRequest(HttpRequest.create(url));
     }
 }
