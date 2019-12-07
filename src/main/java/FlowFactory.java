@@ -31,6 +31,6 @@ public class FlowFactory {
     }
 
     public CompletionStage<HttpResponse> fetch(String url) {
-        
+        return http.singleRequest(HttpRequest.create(url));
     }
 }
