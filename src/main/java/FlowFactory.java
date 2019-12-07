@@ -25,18 +25,18 @@ public class FlowFactory {
             String site = q.get(SITE_PARAMETER_NAME).get();
             Integer count = Integer.parseInt(q.get(COUNT_PARAMETER_NAME).get());
 
+            final Http http = Http.get(system);
             if (count > 0) {
                 Future<Object> server = Patterns.ask(storeActor, new GetMessage(), 10000);
-                final Http http = Http.get(system);
                 return http.singleRequest(HttpRequest.create(
                         "http://" + server + "/?"
                                 + SITE_PARAMETER_NAME + "=" + site + "&"
                                 + COUNT_PARAMETER_NAME + "=" + (count-1))
                 );
             } else {
-                return 
+                return http.singleRequest(HttpRequest.create(site));
             }
-        })
+        }).
     }
 
     public CompletionStage<HttpResponse> fetch(String url) {
