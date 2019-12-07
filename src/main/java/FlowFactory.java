@@ -20,7 +20,7 @@ public class FlowFactory {
     public static Flow<HttpRequest, HttpResponse, NotUsed> createFlow(ActorSystem system,
                                                                       ActorRef storeActor,
                                                                       ActorMaterializer materializer) {
-        return Flow.of(HttpRequest.class).map(r -> {
+        return Flow.of(HttpRequest.class).mapAsync(10, r -> {
             Query q = r.getUri().query();
             String site = q.get(SITE_PARAMETER_NAME).get();
             Integer count = Integer.parseInt(q.get(COUNT_PARAMETER_NAME).get());
