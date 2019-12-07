@@ -36,9 +36,10 @@ public class ZooKeeperApp {
         }
 
         ActorSystem system = ActorSystem.create(ACTOR_SYSTEM_NAME);
-        ActorRef configActor = system.actorOf(Props.create(
-                ConfigurationStorageActor.class,
-                CONFIG_ACTOR_NAME));
+        ActorRef configActor = system.actorOf(
+                Props.create(ConfigurationStorageActor.class),
+                CONFIG_ACTOR_NAME
+                );
         AnonymityZooKeeper zoo = new AnonymityZooKeeper(port, configActor);
 
         final Http http = Http.get(system);
