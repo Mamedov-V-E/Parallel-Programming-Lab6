@@ -20,15 +20,15 @@ public class AnonymityZooKeeper implements Watcher {
                 this
         );
         zkClient.create("/servers",
-                "servers".getBytes(),
-                ZooDefs.Ids.OPEN_ACL_UNSAFE,
-                CreateMode.EPHEMERAL_SEQUENTIAL
-        );
-        zkClient.create("/servers/s",
                 port.toString().getBytes(),
                 ZooDefs.Ids.OPEN_ACL_UNSAFE,
                 CreateMode.EPHEMERAL_SEQUENTIAL
         );
+//        zkClient.create("/servers/s",
+//                port.toString().getBytes(),
+//                ZooDefs.Ids.OPEN_ACL_UNSAFE,
+//                CreateMode.EPHEMERAL_SEQUENTIAL
+//        );
         this.storeActor = storeActor;
     }
 
