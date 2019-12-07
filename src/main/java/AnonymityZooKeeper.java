@@ -36,7 +36,7 @@ public class AnonymityZooKeeper implements Watcher {
     public void process(WatchedEvent event) {
         System.out.println(event.getType());
         System.out.println(event.getState());
-        if (event.getType() == Watcher.Event.EventType.NodeChildrenChanged) {
+        if (event.getState() == Event.KeeperState.SyncConnected) {
             try {
                 System.out.println("NODE CHANGED");
                 List<String> zkServers = zkClient.getChildren("/servers", this);
