@@ -21,8 +21,8 @@ public class FlowFactory {
             Integer count = Integer.parseInt(q.get(COUNT_PARAMETER_NAME).get());
 
             if (count > 0) {
-                Future<Object> server = Patterns.ask(storeActor, new GetMessage(), 10000);
-                Future<Object> result = 
+                String server = storeActor.tell(new GetMessage(), )
+                Future<Object> result =
             }
         })
     }
