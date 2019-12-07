@@ -15,7 +15,7 @@ public class AnonymityZooKeeper implements Watcher {
 
     public AnonymityZooKeeper(Integer port, ActorRef storeActor) throws  Exception{
         this.zkClient = new ZooKeeper(
-                ZOOKEEPER_ID + ':' + ZOOKEEPER_PORT + "/servers",
+                ZOOKEEPER_ID + ':' + ZOOKEEPER_PORT + "/servers/",
                 3000,
                 this
         );
