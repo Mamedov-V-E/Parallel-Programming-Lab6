@@ -43,7 +43,7 @@ public class AnonymityZooKeeper implements Watcher {
                 List<String> serversIdPort = new ArrayList<>();
                 for (String s : zkServers) {
                     byte[] port = zkClient.getData("/servers/" + s, false, null);
-                    serversIdPort.add(ZOOKEEPER_ID + ':' + Integer.parseInt(port.toString()));
+                    serversIdPort.add(ZOOKEEPER_ID + ':' + Integer.parseInt(String.valueOf(port)));
                 }
                 storeActor.tell(new StoreMessage(serversIdPort.toArray(new String[0])), ActorRef.noSender());
             } catch (Exception e) {
