@@ -17,7 +17,7 @@ public class FlowFactory {
     private static final String SITE_PARAMETER_NAME = "url";
     private static final String COUNT_PARAMETER_NAME = "count";
 
-    public static Flow<HttpRequest, HttpResponse, NotUsed> createFlow(ActorRef storeActor, ActorMaterializer materializer) {
+    public static Flow<HttpRequest, HttpResponse, NotUsed> createFlow(ActorSystem system, ActorRef storeActor, ActorMaterializer materializer) {
         return Flow.of(HttpRequest.class).map(r -> {
             Query q = r.getUri().query();
             String site = q.get(SITE_PARAMETER_NAME).get();
@@ -25,6 +25,7 @@ public class FlowFactory {
 
             if (count > 0) {
                 Future<Object> server = Patterns.ask(storeActor, new GetMessage(), 10000);
+                
                 Future<Object> result =
             }
         })
