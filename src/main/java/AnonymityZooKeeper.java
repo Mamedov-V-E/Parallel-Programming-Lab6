@@ -47,7 +47,7 @@ public class AnonymityZooKeeper implements Watcher {
                 }
                 storeActor.tell(new StoreMessage(serversIdPort.toArray(new String[0])), ActorRef.noSender());
             } catch (Exception e) {
-                //System.out.println(e.getMessage());
+                System.out.println("error:" + e.toString());
                 System.exit(-1);
             }
         }
