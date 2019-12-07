@@ -1,6 +1,7 @@
 import akka.NotUsed;
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
+import akka.http.javadsl.Http;
 import akka.http.javadsl.model.HttpRequest;
 import akka.http.javadsl.model.HttpResponse;
 import akka.http.javadsl.model.Query;
@@ -22,7 +23,8 @@ public class FlowFactory {
 
             if (count > 0) {
                 Future<Object> server = Patterns.ask(storeActor, new GetMessage(), 10000);
-                Future<Object> result = 
+                final Http http
+                Future<Object> result =
             }
         })
     }
