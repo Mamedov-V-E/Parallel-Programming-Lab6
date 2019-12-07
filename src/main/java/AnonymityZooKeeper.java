@@ -33,7 +33,7 @@ public class AnonymityZooKeeper implements Watcher {
     }
 
     public void process(WatchedEvent event) {
-        System.out.println();
+        System.out.println(event.getState());
         if (event.getState() == Event.KeeperState.SyncConnected ||
                 event.getState() == Event.KeeperState.Disconnected) {
             try {
