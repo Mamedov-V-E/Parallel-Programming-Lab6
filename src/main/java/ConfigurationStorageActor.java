@@ -8,6 +8,7 @@ import java.util.List;
 public class ConfigurationStorageActor extends AbstractActor {
     private List<String> store = new ArrayList<>();
 
+    @Override
     public Receive createReceive() {
         return receiveBuilder()
                 .match(StoreMessage.class, m -> {
