@@ -36,7 +36,7 @@ public class FlowFactory {
                                 + COUNT_PARAMETER_NAME + "=" + (count-1))
                 ));
             } else {
-                return http.singleRequest(HttpRequest.create(site));
+                return CompletableFuture.completedFuture(http.singleRequest(HttpRequest.create(site)));
             }
         });
     }
