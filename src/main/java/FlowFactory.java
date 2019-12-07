@@ -10,6 +10,8 @@ import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
 import scala.concurrent.Future;
 
+import java.util.concurrent.CompletionStage;
+
 
 public class FlowFactory {
     private static final String SITE_PARAMETER_NAME = "url";
@@ -27,5 +29,8 @@ public class FlowFactory {
             }
         })
     }
-    
+
+    public CompletionStage<HttpResponse> fetch(String url) {
+        
+    }
 }
