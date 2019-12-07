@@ -36,7 +36,7 @@ public class FlowFactory {
             } else {
                 return http.singleRequest(HttpRequest.create(site));
             }
-        }).
+        });
     }
 
     public CompletionStage<HttpResponse> fetch(String url) {
