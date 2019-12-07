@@ -34,7 +34,7 @@ public class AnonymityZooKeeper implements Watcher {
     }
 
     public void process(WatchedEvent event) {
-        //System.out.println();
+        System.out.println(event.getType());
         if (event.getType() == Event.EventType.NodeChildrenChanged) {
             try {
                 System.out.println("NODE CHANGED");
