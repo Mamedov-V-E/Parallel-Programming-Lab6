@@ -24,7 +24,7 @@ public class AnonymityZooKeeper implements Watcher {
                 ZooDefs.Ids.OPEN_ACL_UNSAFE,
                 CreateMode.EPHEMERAL_SEQUENTIAL
         );
-        zkClient.create("/servers/" + port,
+        zkClient.create("/servers/s",
                 port.toString().getBytes(),
                 ZooDefs.Ids.OPEN_ACL_UNSAFE,
                 CreateMode.EPHEMERAL_SEQUENTIAL
