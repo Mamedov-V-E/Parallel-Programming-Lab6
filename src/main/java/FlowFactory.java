@@ -25,8 +25,8 @@ public class FlowFactory {
 
             if (count > 0) {
                 Future<Object> server = Patterns.ask(storeActor, new GetMessage(), 10000);
-                final Http http = Htt
-                Future<Object> result =
+                final Http http = Http.get(system);
+                return http.singleRequest(HttpRequest.create());
             }
         })
     }
