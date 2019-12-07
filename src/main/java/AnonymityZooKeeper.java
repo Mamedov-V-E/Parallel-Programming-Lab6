@@ -28,7 +28,8 @@ public class AnonymityZooKeeper implements Watcher {
     }
 
     public void process(WatchedEvent event) {
-        if (event.getType() == Watcher.Event.EventType.NodeCreated) {
+        if (event.getType() == Watcher.Event.EventType.NodeCreated ||
+                event.getType() == Watcher.Event.EventType.NodeDeleted) {
             try {
                 List<String> zkServers = zkClient.getChildren("/servers", this);
                 List<String> serversIdPort = new ArrayList<>();
