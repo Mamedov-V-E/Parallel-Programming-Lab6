@@ -12,6 +12,7 @@ public class ConfigurationStorageActor extends AbstractActor {
     public Receive createReceive() {
         return receiveBuilder()
                 .match(StoreMessage.class, m -> {
+                    System.out.println("CHANGE SERVER LIST");
                     store = Arrays.asList(m.getServers());
                 })
                 .match(GetMessage.class, m -> {
