@@ -28,7 +28,7 @@ public class FlowFactory {
             final Http http = Http.get(system);
             if (count > 0) {
                 Future<Object> server = Patterns.ask(storeActor, new GetMessage(), 10000);
-                return complete http.singleRequest(HttpRequest.create(
+                return http.singleRequest(HttpRequest.create(
                         "http://" + server + "/?"
                                 + SITE_PARAMETER_NAME + "=" + site + "&"
                                 + COUNT_PARAMETER_NAME + "=" + (count-1))
