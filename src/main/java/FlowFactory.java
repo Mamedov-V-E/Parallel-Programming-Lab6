@@ -18,8 +18,7 @@ public class FlowFactory {
     private static final int MAX_SIMULTANEOUS_REQUESTS = 10;
 
     public static Flow<HttpRequest, HttpResponse, NotUsed> createFlow(ActorSystem system,
-                                                                      ActorRef storeActor,
-                                                                      ActorMaterializer materializer) {
+                                                                      ActorRef storeActor) {
         return Flow.of(HttpRequest.class).mapAsync(MAX_SIMULTANEOUS_REQUESTS, r -> {
             Query q = r.getUri().query();
             String site = q.get(SITE_PARAMETER_NAME).get();
