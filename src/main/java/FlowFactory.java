@@ -23,6 +23,7 @@ public class FlowFactory {
             Query q = r.getUri().query();
             String site = q.get(SITE_PARAMETER_NAME).get();
             Integer count = Integer.parseInt(q.get(COUNT_PARAMETER_NAME).get());
+            System.out.println("host got request with count: " + count);
 
             final Http http = Http.get(system);
             if (count > 0) {
