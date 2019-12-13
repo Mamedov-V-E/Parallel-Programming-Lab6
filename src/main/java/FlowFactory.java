@@ -8,6 +8,7 @@ import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
 import scala.concurrent.Future;
 
+import java.time.Duration;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 
@@ -16,6 +17,7 @@ public class FlowFactory {
     private static final String SITE_PARAMETER_NAME = "url";
     private static final String COUNT_PARAMETER_NAME = "count";
     private static final int MAX_SIMULTANEOUS_REQUESTS = 10;
+    private static final Duration TIMOUT_MILLIS = Duration.ofMillis(10000);
 
     public static Flow<HttpRequest, HttpResponse, NotUsed> createFlow(ActorSystem system,
                                                                       ActorRef storeActor) {
