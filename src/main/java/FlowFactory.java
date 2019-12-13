@@ -68,7 +68,7 @@ public class FlowFactory {
                         .withStatus(StatusCodes.OK)
                         .withEntity(
                                 HttpEntities.create(
-                                        result.toString()
+                                        result.thenCompose();
                                 )
                         ));
     }
