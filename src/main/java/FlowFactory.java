@@ -29,7 +29,7 @@ public class FlowFactory {
 
             final Http http = Http.get(system);
             if (count > 0) {
-                Future<Object> server = Patterns.ask(storeActor, new GetMessage(), 10000);
+                CompletionStage<Object> server = Patterns.ask(storeActor, new GetMessage(), TIMOUT_MILLIS);
 //                return HttpResponse
 //                        .create()
 //                        .withStatus(StatusCodes.OK)
