@@ -60,7 +60,7 @@ public class FlowFactory {
 //                                        http.singleRequest(HttpRequest.create(site)).toString()
 //                                )
 //                        );
-                return CompletableFuture.completedFuture(http.singleRequest(HttpRequest.create(site))).whenComplete((a, d) -> {});
+                return CompletableFuture.completedFuture(http.singleRequest(HttpRequest.create(site))).;
             }
         }).map(result ->
                 HttpResponse
