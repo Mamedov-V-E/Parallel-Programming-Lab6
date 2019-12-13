@@ -45,11 +45,11 @@ public class FlowFactory {
 //                                + SITE_PARAMETER_NAME + "=" + site + "&"
 //                                + COUNT_PARAMETER_NAME + "=" + (count-1))
 //                ));
-                return Patterns.ask(storeActor, new GetMessage(), TIMOUT_MILLIS).thenCompose(server ->
+                return CompletableFuture.completedFuture(Patterns.ask(storeActor, new GetMessage(), TIMOUT_MILLIS).thenCompose(server ->
                         http.singleRequest(HttpRequest.create(
                         "http://" + server + "/?"
                                 + SITE_PARAMETER_NAME + "=" + site + "&"
-                                + COUNT_PARAMETER_NAME + "=" + (count-1))));
+                                + COUNT_PARAMETER_NAME + "=" + (count-1)))));
             } else {
 //                return HttpResponse
 //                        .create()
