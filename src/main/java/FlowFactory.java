@@ -2,9 +2,7 @@ import akka.NotUsed;
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.http.javadsl.Http;
-import akka.http.javadsl.model.HttpRequest;
-import akka.http.javadsl.model.HttpResponse;
-import akka.http.javadsl.model.Query;
+import akka.http.javadsl.model.*;
 import akka.pattern.Patterns;
 import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
@@ -36,7 +34,10 @@ public class FlowFactory {
 //                                + COUNT_PARAMETER_NAME + "=" + (count-1))
 //                ));
             } else {
-                return 
+                return HttpResponse
+                        .create()
+                        .withStatus(StatusCodes.OK)
+                        .
 //                return CompletableFuture.completedFuture(http.singleRequest(HttpRequest.create(site)));
             }
         });
