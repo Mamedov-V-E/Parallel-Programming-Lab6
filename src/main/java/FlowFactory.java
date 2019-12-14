@@ -32,7 +32,7 @@ public class FlowFactory {
                 return Patterns.ask(storeActor, new GetMessage(), TIMOUT_MILLIS)
                         .thenCompose(server ->
                             http.singleRequest(HttpRequest.create(
-                                    FormUri((String)server, site, count)
+                                    formUri((String)server, site, count)
                             )));
             } else {
                 return http.singleRequest(HttpRequest.create(site));
@@ -40,7 +40,7 @@ public class FlowFactory {
         });
     }
 
-    private static String FormUri(String server, String site, int count) {
+    private static String formUri(String server, String site, int count) {
         return "http://" + server + "/?"
                 + SITE_PARAMETER_NAME + "=" + site + "&"
                 + COUNT_PARAMETER_NAME + "=" + (count-1);
