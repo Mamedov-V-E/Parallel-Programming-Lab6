@@ -45,12 +45,13 @@ public class FlowFactory {
 //                                + SITE_PARAMETER_NAME + "=" + site + "&"
 //                                + COUNT_PARAMETER_NAME + "=" + (count-1))
 //                ));
-                return CompletableFuture.completedFuture(Patterns.ask(storeActor, new GetMessage(), TIMOUT_MILLIS)
+                
+                return Patterns.ask(storeActor, new GetMessage(), TIMOUT_MILLIS)
                         .thenCompose(server ->
                             http.singleRequest(HttpRequest.create(
                             "http://" + server + "/?"
                                     + SITE_PARAMETER_NAME + "=" + site + "&"
-                                    + COUNT_PARAMETER_NAME + "=" + (count-1)))));
+                                    + COUNT_PARAMETER_NAME + "=" + (count-1))));
             } else {
 //                return HttpResponse
 //                        .create()
@@ -60,16 +61,8 @@ public class FlowFactory {
 //                                        http.singleRequest(HttpRequest.create(site)).toString()
 //                                )
 //                        );
-                return CompletableFuture.completedFuture(http.singleRequest(HttpRequest.create(site))).;
+                return http.singleRequest(HttpRequest.create(site));
             }
-        }).map(result ->
-                HttpResponse
-                        .create()
-                        .withStatus(StatusCodes.OK)
-                        .withEntity(
-                                HttpEntities.create(
-                                        result.toString()
-                                )
-                        ));
+        });
     }
 }
