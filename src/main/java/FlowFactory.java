@@ -29,23 +29,6 @@ public class FlowFactory {
 
             final Http http = Http.get(system);
             if (count > 0) {
-//                CompletionStage<Object> server = Patterns.ask(storeActor, new GetMessage(), TIMOUT_MILLIS);
-//                return HttpResponse
-//                        .create()
-//                        .withStatus(StatusCodes.OK)
-//                        .withEntity(
-//                                HttpEntities.create(
-//                                        "http://" + server + "/?"
-//                                        + SITE_PARAMETER_NAME + "=" + site + "&"
-//                                        + COUNT_PARAMETER_NAME + "=" + (count-1)
-//                                )
-//                        );
-//                return CompletableFuture.completedFuture(http.singleRequest(HttpRequest.create(
-//                        "http://" + server + "/?"
-//                                + SITE_PARAMETER_NAME + "=" + site + "&"
-//                                + COUNT_PARAMETER_NAME + "=" + (count-1))
-//                ));
-
                 return Patterns.ask(storeActor, new GetMessage(), TIMOUT_MILLIS)
                         .thenCompose(server ->
                             http.singleRequest(HttpRequest.create(
