@@ -32,20 +32,17 @@ public class FlowFactory {
                 return Patterns.ask(storeActor, new GetMessage(), TIMOUT_MILLIS)
                         .thenCompose(server ->
                             http.singleRequest(HttpRequest.create(
-                            "http://" + server + "/?"
-                                    + SITE_PARAMETER_NAME + "=" + site + "&"
-                                    + COUNT_PARAMETER_NAME + "=" + (count-1))));
+                                    FormUri((String)server, site, count)
+                            )));
             } else {
-//                return HttpResponse
-//                        .create()
-//                        .withStatus(StatusCodes.OK)
-//                        .withEntity(
-//                                HttpEntities.create(
-//                                        http.singleRequest(HttpRequest.create(site)).toString()
-//                                )
-//                        );
                 return http.singleRequest(HttpRequest.create(site));
             }
         });
+    }
+
+    private static String FormUri(String serve, String site, int count) {
+        return "http://" + server + "/?"
+                + SITE_PARAMETER_NAME + "=" + site + "&"
+                + COUNT_PARAMETER_NAME + "=" + (count-1);
     }
 }
