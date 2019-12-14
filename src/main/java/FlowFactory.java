@@ -40,7 +40,7 @@ public class FlowFactory {
         });
     }
 
-    private static String FormUri(String serve, String site, int count) {
+    private static String FormUri(String server, String site, int count) {
         return "http://" + server + "/?"
                 + SITE_PARAMETER_NAME + "=" + site + "&"
                 + COUNT_PARAMETER_NAME + "=" + (count-1);
